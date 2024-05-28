@@ -38,10 +38,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Fashion',
-
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google'
 
 ]
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+]
 
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -52,7 +61,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "django.middleware.common.CommonMiddleware",
-
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'Fashion_Site.urls'
@@ -137,3 +146,20 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
     BASE_DIR / 'Fashion/templates'
 ]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': 'your_app_name.custom_social_models.SQLiteSafeSocialApp',
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'ACCOUNT_ADAPTER': 'Fashion.adapters.CustomSocialAccountAdapter',
+    }
+}
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '701087793895-uk8jq7ajqst0hiop9d2rp3rfr4dtsh9t.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
