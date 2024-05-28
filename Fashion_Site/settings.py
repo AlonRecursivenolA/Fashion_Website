@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from allauth import *
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,14 +44,39 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.google'
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.github',
+
+    # Example for Facebook
+
+    'storages',
 
 ]
-AUTHENTICATION_BACKENDS = [
+
+AWS_ACCESS_KEY_ID = 'AKIAQFD4PCUMPHXRD7D4'
+AWS_SECRET_ACCESS_KEY = '9D1BOdWZIOXuYT0DxOkspVlfUetHHy2ZiiOljJyx'
+AWS_STORAGE_BUCKET_NAME = 'bucketalonandsharon'  # Remove the space at the end
+AWS_S3_REGION_NAME = 'eu-north-1'
+AWS_S3_CUSTOM_DOMAIN = 'bucketalonandsharon.s3.eu-north-1.amazonaws.com'
+
+# For serving static files directly from S3
+AWS_S3_URL_PROTOCOL = 'https'
+AWS_S3_USE_SSL = True
+AWS_S3_VERIFY = True
+
+# Static and media file configuration
+# STATIC_URL = 'https://bucketalonandsharon.s3.eu-north-1.amazonaws.com/static/'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#
+# MEDIA_URL = 'https://bucketalonandsharon.s3.eu-north-1.amazonaws.com/media/'
+#
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend'
-]
-
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 SITE_ID = 1
 
 MIDDLEWARE = [
@@ -149,7 +176,6 @@ STATICFILES_DIRS = [
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
-        'APP': 'your_app_name.custom_social_models.SQLiteSafeSocialApp',
         'SCOPE': [
             'profile',
             'email',
@@ -157,9 +183,14 @@ SOCIALACCOUNT_PROVIDERS = {
         'AUTH_PARAMS': {
             'access_type': 'online',
         },
-        'ACCOUNT_ADAPTER': 'Fashion.adapters.CustomSocialAccountAdapter',
+        'OAUTH_PKCE_ENABLED': True,
     }
 }
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '701087793895-uk8jq7ajqst0hiop9d2rp3rfr4dtsh9t.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+CLIENT_ID = '220083446913-svei09hp7v9m7v2lb4bec4b5qiappech.apps.googleusercontent.com'
+
+CLIENT_SECRET = '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'
+#
+#
+# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '701087793895-uk8jq7ajqst0hiop9d2rp3rfr4dtsh9t.apps.googleusercontent.com'
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'

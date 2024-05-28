@@ -1,4 +1,3 @@
-
 {% load socialaccount %}
 
 <!DOCTYPE html>
@@ -89,12 +88,13 @@ button[type="submit"]:hover {
     <button type="submit">Log In</button>
   </form>
 
-      <p>Login With: </p>
-      <br/>s
+  <p>Login With: </p>
+  <br/>
 
-  <a class="google-btn" href="{% provider_login_url 'google' %}>
-    Log in with Google
+  <a  href="{% provider_login_url 'google' %}">
+      Log in with Google
   </a>
+
 
   {% endblock %}
 </div>
