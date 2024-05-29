@@ -5,8 +5,6 @@ botocore==1.34.113
 certifi==2024.2.2
 charset-normalizer==3.3.2
 Django==4.2.13
-django-allauth==0.61.0
-django-allauth[google]==0.61.0
 django-storages==1.14.3
 idna==3.7
 importlib_metadata==7.1.0
