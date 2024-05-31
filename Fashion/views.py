@@ -14,8 +14,6 @@ def index(request):
 def login(request):
     return render(request, template_name='registration/login.html', context={})
 
-
-
 class SignUpView(CreateView):
     form_class = UserCreationForm
     template_name = 'registration/signup.html'
