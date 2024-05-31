@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 from allauth import *
 
+import Fashion_Site
+from Fashion import tests
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -48,11 +50,13 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.github',
 
+
     # Example for Facebook
 
     'storages',
 
 ]
+
 
 AWS_ACCESS_KEY_ID = 'AKIAQFD4PCUMPHXRD7D4'
 AWS_SECRET_ACCESS_KEY = '9D1BOdWZIOXuYT0DxOkspVlfUetHHy2ZiiOljJyx'
@@ -73,11 +77,8 @@ AWS_S3_VERIFY = True
 #
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-)
-SITE_ID = 1
+
+SITE_ID = 2
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -166,13 +167,15 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGOUT_REDIRECT_URL = 'index'  # new
-LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = '/'  # new
+LOGIN_REDIRECT_URL = '/'
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
     BASE_DIR / 'Fashion/templates'
 ]
+
+
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -186,6 +189,11 @@ SOCIALACCOUNT_PROVIDERS = {
         'OAUTH_PKCE_ENABLED': True,
     }
 }
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 CLIENT_ID = '220083446913-svei09hp7v9m7v2lb4bec4b5qiappech.apps.googleusercontent.com'
 
