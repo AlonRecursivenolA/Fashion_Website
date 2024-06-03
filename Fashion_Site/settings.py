@@ -77,7 +77,7 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
-SITE_ID = 1
+SITE_ID = 2
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -166,8 +166,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGOUT_REDIRECT_URL = 'index'  # new
-LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = '/'  # new
+LOGIN_REDIRECT_URL = '/'
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",

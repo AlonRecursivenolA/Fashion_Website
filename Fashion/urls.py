@@ -15,4 +15,5 @@ urlpatterns = [
     path('accounts/profile', views.profile,name="profile"),
     path("accounts/signup/", SignUpView.as_view(), name="signup"),
 
+
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

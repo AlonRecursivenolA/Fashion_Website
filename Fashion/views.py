@@ -2,10 +2,19 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
+
+from Fashion.models import Product
 
 
 # Create your views here.
+
+
+
+class ViewProducts(ListView):
+
+    model = Product
+    template_name = 'products.html'
 
 def index(request):
     return render(request,template_name='index.html',context={})
