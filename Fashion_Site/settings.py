@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from allauth import *
+import os
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -79,7 +80,12 @@ AUTHENTICATION_BACKENDS = (
 )
 SITE_ID = 2
 
+CORS_ALLOWED_ORIGINS = [
+    'http'
+]
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware'
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -96,7 +102,7 @@ ROOT_URLCONF = 'Fashion_Site.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [ BASE_DIR / 'templates', os.path.join(BASE_DIR, 'learning-react/build' ) ]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -171,7 +177,8 @@ LOGIN_REDIRECT_URL = '/'
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
-    BASE_DIR / 'Fashion/templates'
+    BASE_DIR / 'Fashion/templates',
+    BASE_DIR / 'learning-react/build/static'
 ]
 
 SOCIALACCOUNT_PROVIDERS = {
