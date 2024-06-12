@@ -4,12 +4,24 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, ListView
 import json
+from rest_framework.views import APIView
+from .models import *
+from rest_framework.response import Response
+from . serializer import *
+from rest_framework import generics
+from .models import Product
+
 
 from Fashion.models import Product
 
 
 # Create your views here.
 
+from rest_framework import viewsets
+from .serializer import MyModelSerializer
+class MyModelViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = MyModelSerializer
 
 
 class ViewProducts(ListView):
@@ -31,11 +43,15 @@ class ViewProducts(ListView):
         return context
 
 
-
-
+from django.shortcuts import render
 
 def index(request):
-    return render(request,template_name='index.html',context={})
+    return render(request, 'index.html')
+
+
+
+# def index(request):
+#     return render(request,template_name='index.html',context={})
 
 
 def login(request):
@@ -48,3 +64,5 @@ class SignUpView(CreateView):
 
 def profile(request):
     return HttpResponseRedirect(reverse('index'))
+
+

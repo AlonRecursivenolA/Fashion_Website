@@ -48,6 +48,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.github',
+    'rest_framework',
+    'corsheaders',
+
 
     # Example for Facebook
 
@@ -80,12 +83,17 @@ AUTHENTICATION_BACKENDS = (
 )
 SITE_ID = 2
 
-CORS_ALLOWED_ORIGINS = [
-    'http'
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+}
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware'
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

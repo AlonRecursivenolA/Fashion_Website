@@ -16,8 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from Fashion.views import MyModelViewSet
+
 
 from Fashion.views import ViewProducts
+router = DefaultRouter()
+router.register(r'mymodel', MyModelViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,6 +30,6 @@ urlpatterns = [
     path('accounts/', include("django.contrib.auth.urls")),
     path('accounts/', include('allauth.urls')),
     path('', include('allauth.urls')),
-
+    path('api/', include(router.urls)),
 
 ]
